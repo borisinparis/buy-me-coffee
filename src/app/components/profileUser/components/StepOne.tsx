@@ -6,6 +6,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { profileSchema } from "@/utils/profileValidtion";
 import axios from "axios";
 import { useState } from "react";
+import StepTwoProfileEdit from "./StepTwo";
+type StepOneProfileEditProps = {
+  setStep: (step: number) => void;
+};
 
 type ProfileInfoTypes = {
   name: string;
@@ -13,7 +17,7 @@ type ProfileInfoTypes = {
   media: File | null;
 };
 
-export const StepOneProfileEdit = () => {
+export const StepOneProfileEdit = ({ setStep }: StepOneProfileEditProps) => {
   const [preview, setPreview] = useState<string | null>(null);
 
   const handleSubmit = async (values: ProfileInfoTypes) => {
@@ -22,14 +26,16 @@ export const StepOneProfileEdit = () => {
     formData.append("about", values.about);
     if (values.media) {
       formData.append("media", values.media);
+      <StepTwoProfileEdit />;
     }
+    setStep(2);
 
-    try {
-      const response = await axios.post("/api/your-endpoint", formData);
-      console.log("Upload success:", response.data);
-    } catch (err) {
-      console.error("Upload failed:", err);
-    }
+    // try {
+    //   const response = await axios.post("/api/your-endpoint", formData);
+    //   console.log("Upload success:", response.data);
+    // } catch (err) {
+    //   console.error("Upload failed:", err);
+    // }
   };
 
   return (
@@ -44,6 +50,9 @@ export const StepOneProfileEdit = () => {
             <Form className="flex flex-col gap-4">
               {/* Photo Upload */}
               <div>
+                <h1 className="font-bold text-2xl mb-6">
+                  Complete your profile page
+                </h1>
                 <h2 className="mb-2">Add photo</h2>
                 <div className="w-[160px] h-[160px] flex items-center justify-center border-dotted border-2 rounded-full mb-4">
                   <Input

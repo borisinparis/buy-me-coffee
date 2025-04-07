@@ -4,9 +4,7 @@ import { CameraIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { profileSchema } from "@/utils/profileValidtion";
-import axios from "axios";
 import { useState } from "react";
-import StepTwoProfileEdit from "./StepTwo";
 type StepOneProfileEditProps = {
   setStep: (step: number) => void;
 };
@@ -26,7 +24,7 @@ export const StepOneProfileEdit = ({ setStep }: StepOneProfileEditProps) => {
     formData.append("about", values.about);
     if (values.media) {
       formData.append("media", values.media);
-      <StepTwoProfileEdit />;
+      // <StepTwoProfileEdit />;
     }
     setStep(2);
 
@@ -48,7 +46,6 @@ export const StepOneProfileEdit = ({ setStep }: StepOneProfileEditProps) => {
         >
           {({ values, setFieldValue, handleChange }) => (
             <Form className="flex flex-col gap-4">
-              {/* Photo Upload */}
               <div>
                 <h1 className="font-bold text-2xl mb-6">
                   Complete your profile page

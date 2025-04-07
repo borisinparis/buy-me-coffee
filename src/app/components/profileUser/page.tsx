@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import ProfileHeader from "./components/ProfileHeader";
 import StepOneProfileEdit from "./components/StepOne";
-import StepTwoProfileEdit from "./components/StepTwo";
+import { StepTwoProfileEdit } from "./components/StepTwo";
 
 const ProfileUser = () => {
   const [step, setStep] = useState(() => {
